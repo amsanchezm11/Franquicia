@@ -55,11 +55,13 @@ public class Tienda {
         int peso = teclado.nextInt();
 
         System.out.println("¿Que tipo de animal deseas agregar?");
+        System.out.println("[PEZ]-[PAJARO]-[DOMESTICO]");
         String color = teclado.nextLine();
 
         switch (teclado.nextLine().toUpperCase()){
             case "PEZ" -> registrarPez(nombre,edad,peso);
             case "PAJARO" -> registrarPajaro(nombre,edad,peso);
+            case "DOMESTICO" -> registrarAnimalDomestico(nombre,edad,peso);
         }
 
     }
