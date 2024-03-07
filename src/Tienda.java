@@ -16,14 +16,29 @@ public class Tienda {
         this.listaAnimales = listaAnimales;
     }
 
-    // METODOS
+    // GETTERS AND SETTERS
 
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+//  METODOS
+
+//  MOSTRAR ANIMAL
     public void mostrarAnimales(){
         for (Animal a:listaAnimales) {
             System.out.println(a);
         }
     }
-
+//  BORRAR ANIMAL
     public boolean borrarAnimal(int id){
         boolean resultado = false;
         Iterator<Animal> iter = listaAnimales.iterator();
@@ -40,11 +55,9 @@ public class Tienda {
             }
         }
 
-
-
         return resultado;
     }
-
+    // AGREGAR ANIMAL
     public void agregarAnimal(){
 
         System.out.println("Nombre del animal: ");
@@ -65,7 +78,7 @@ public class Tienda {
         }
 
     }
-
+    // REGISTRAR PEZ
     public void registrarPez( String nombre, int edad,int peso){
 
         System.out.println("¿De que color es el pez?");
@@ -75,7 +88,7 @@ public class Tienda {
 
         listaAnimales.add(new Pez(nombre,edad,peso,color,phIdeal));
     }
-
+    // REGISTRAR PAJARO
     public void registrarPajaro( String nombre, int edad,int peso){
 
         System.out.println("¿De que especie es el pajaro?");
@@ -85,13 +98,14 @@ public class Tienda {
 
         listaAnimales.add(new Pez(nombre,edad,peso,especie,pesoIdeal));
     }
-
+    // REGISTRAR ANIMAL DOMESTICO
     public void registrarAnimalDomestico( String nombre, int edad,int peso){
 
         boolean vacunado;
         TipoAnimal tipo;
         String raza;
         int vacunadoP;
+
 
         System.out.println("¿Es un perro o un gato?");
         String tipoAnimal = teclado.nextLine();
@@ -102,30 +116,62 @@ public class Tienda {
             System.out.println("¿De que raza es el perro?");
             raza = teclado.nextLine();
 
+
             System.out.println("¿Está vacunado? [1-SI][2-NO]");
             vacunadoP = teclado.nextInt();
             if (vacunadoP==1){
                 vacunado = true;
             }else vacunado = false;
 
-            listaAnimales.add(new AnimalDomestico(nombre,edad,peso,vacunado,tipo,raza));
+            AnimalDomestico perro = new AnimalDomestico(nombre,edad,peso,vacunado,tipo);
+            perro.setRaza(raza);
+            listaAnimales.add(perro);
         }else{
             tipo = TipoAnimal.GATO;
 
-            System.out.println("¿De que raza es el gato?");
-             raza = teclado.nextLine();
-
             System.out.println("¿Está vacunado? [1-SI][2-NO]");
             vacunadoP = teclado.nextInt();
+
             if (vacunadoP==1){
                 vacunado = true;
             }else vacunado = false;
 
-            listaAnimales.add(new AnimalDomestico(nombre,edad,peso,vacunado,tipo,raza));
+            listaAnimales.add(new AnimalDomestico(nombre,edad,peso,vacunado,tipo));
         }
 
+    }
+    // ADD ANIMAL
+    public void addAnimal(Animal a){
+        listaAnimales.add(a);
+    }
 
 
+//  REVISAR ANIMALES
 
+    public void revisarAnimales(){
+
+        Animal animalAux;
+        mostrarAnimales();
+
+        System.out.println("Selecciona un animal(0-1-2...n):");
+        int idLista = teclado.nextInt();
+
+        System.out.println("¿Que tipo de animal es?");
+        System.out.println("[PEZ][PAJARO][PERRO][GATO]");
+        String respuesta = teclado.nextLine();
+
+        listaAnimales.get(idLista);
+
+
+    }
+
+//  TO STRING
+    @Override
+    public String toString() {
+        return "Tienda{" +
+                "id=" + id +
+                ", ubicacion='" + ubicacion + '\'' +
+                ", phPecera=" + phPecera +
+                '}';
     }
 }

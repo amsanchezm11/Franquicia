@@ -4,11 +4,10 @@ public class AnimalDomestico extends Animal{
     private String raza;
 
 
-    public AnimalDomestico(String nombre, int edad, int peso, boolean vacunado, TipoAnimal tipo, String raza) {
+    public AnimalDomestico(String nombre, int edad, int peso, boolean vacunado, TipoAnimal tipo) {
         super(nombre, edad, peso);
         this.vacunado=vacunado;
         this.tipo=tipo;
-        this.raza=raza;
     }
 
     public boolean isVacunado() {
