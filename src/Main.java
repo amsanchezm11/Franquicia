@@ -19,41 +19,44 @@ public class Main {
         t.borrarAnimal(teclado.nextInt());
     }
 
+    public static boolean existeTienda(List<Tienda>listaTiendas, int id){
+
+        if (listaTiendas.contains(listaTiendas.get(id))){
+            System.out.println("La tienda existe");
+            return true;
+        }else {
+            System.out.println("La tienda no existe");
+            return false;
+        }
+    }
+
     public static  void menuSecundario(){
 
         mostrarTiendas(listaTiendas);
         System.out.println("¿Cual tienda quieres gestionar?");
 
-        Tienda tAux = listaTiendas.get(teclado.nextInt());
+        int id = teclado.nextInt();
 
-        System.out.println("[1] - NUEVO ANIMAL");
-        System.out.println("[2] - VENDER ANIMAL");
-        System.out.println("[3] - REVISION");
-        System.out.println("[4] - MOSTRAR ANIMALES");
-        System.out.print("\n\n¿Que quieres hacer? --> Respuesta:");
+        if (existeTienda(listaTiendas,id)){
+            Tienda tAux = listaTiendas.get(id);
 
-        //int respuesta = teclado.nextInt();
+            System.out.println("[1] - NUEVO ANIMAL");
+            System.out.println("[2] - VENDER ANIMAL");
+            System.out.println("[3] - REVISION");
+            System.out.println("[4] - MOSTRAR ANIMALES");
+            System.out.print("\n\n¿Que quieres hacer? --> Respuesta:");
 
-        switch (teclado.nextInt()){
-            case 1 -> tAux.agregarAnimal();
-            case 2 -> venderAnimal(tAux);
-            case 3 -> tAux.revisarAnimales();
-            case 4 -> tAux.mostrarAnimales();
-        }
-    }
+            //int respuesta = teclado.nextInt();
 
-    public static boolean existeTienda(List<Tienda>listaTiendas, int id){
-
-            if (listaTiendas.contains(listaTiendas.get(id))){
-                System.out.println("La tienda existe");
-                return true;
-            }else {
-                System.out.println("La tienda no existe");
-                return false;
+            switch (teclado.nextInt()){
+                case 1 -> tAux.agregarAnimal();
+                case 2 -> venderAnimal(tAux);
+                case 3 -> tAux.revisarAnimales();
+                case 4 -> tAux.mostrarAnimales();
             }
+        }
+
     }
-
-
 
 
     public static void main(String[] args) {
